@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World's Best Frock Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>World's Best Frock Store</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="cart.html"> 
+                    <i class="fas fa-shopping-cart"></i> Cart (<span id="cart-count">0</span>)
+                </a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Discover Your Perfect Frock</h2>
+            <p>Elegant, stylish, and timeless frocks for every occasion.</p>
+        </section>
+
+        <section class="products">
+            <h2>Our Featured Collection</h2>
+            <div class="product-list">
+                <div class="product">
+                    <img src="images/frock1.jpg" alt="Frock A">
+                    <h3>Frock A</h3>
+                    <p>$49.99</p>
+                    <button onclick="addToCart('Frock A', 49.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/frock2.jpg" alt="Frock B">
+                    <h3>Frock B</h3>
+                    <p>$59.99</p>
+                    <button onclick="addToCart('Frock B', 59.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/frock3.jpg" alt="Frock C">
+                    <h3>Frock C</h3>
+                    <p>$69.99</p>
+                    <button onclick="addToCart('Frock C', 69.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/frock4.jpg" alt="Frock D">
+                    <h3>Frock D</h3>
+                    <p>$79.99</p>
+                    <button onclick="addToCart('Frock D', 79.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/frock5.jpg" alt="Frock E">
+                    <h3>Frock E</h3>
+                    <p>$89.99</p>
+                    <button onclick="addToCart('Frock E', 89.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/frock6.jpg" alt="Frock F">
+                    <h3>Frock F</h3>
+                    <p>$99.99</p>
+                    <button onclick="addToCart('Frock F', 99.99)">Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="images/frock7.jpg" alt="Frock G">
+                    <h3>Frock G</h3>
+                    <p>$109.99</p>
+                    <button onclick="addToCart('Frock G', 109.99)">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 World's Best Frock Store</p>
+    </footer>
+
+    <script>
+        let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        function addToCart(name, price) {
+            const existingItem = cartItems.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cartItems.push({ name, price, quantity: 1 });
+            }
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+        }
+
+        updateCartCount();
+    </script>
+</body>
+</html>

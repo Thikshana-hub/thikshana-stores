@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <h1>Shopping Cart</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Cart Container -->
+    <main>
+        <div class="cart-container">
+            <h2>Your Shopping Cart</h2>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th>Remove</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items-container">
+                    <!-- Cart items will be inserted here -->
+                </tbody>
+            </table>
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <p>Total Price: <span id="total-price">$0.00</span></p>
+                <button class="order-button" onclick="sendOrder()">Place Order via WhatsApp</button>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript for Cart Functionality -->
+    <script>
+        const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+        function loadCart() {
+            const cartContainer = document.getElementById('cart-items-container');
+            cartContainer.innerHTML = '';
+            let totalPrice = 0;
+            cartItems.forEach((item, index) => {
+                const total = (item.price * item.quantity).toFixed(2);
+                totalPrice += parseFloat(total);
+
+                cartContainer.innerHTML += `
+                    <tr>
+                        <td><img src="frock${index + 1}.jpg" alt="${item.name}" /></td>
+                        <td>${item.name}</td>
+                        <td>$${item.price.toFixed(2)}</td>
+                        <td>
+                            <div class="quantity-control">
+                                <button onclick="updateQuantity(${index}, -1)">-</button>
+                                <span>${item.quantity}</span>
+                                <button onclick="updateQuantity(${index}, 1)">+</button>
+                            </div>
+                        </td>
+                        <td>$${total}</td>
+                        <td><button class="remove-button" onclick="removeItem(${index})">Remove</button></td>
+                    </tr>
+                `;
+            });
+            document.getElementById('total-price').innerText = `$${totalPrice.toFixed(2)}`;
+            updateCartCount();
+        }
+
+        function updateCartCount() {
+            document.getElementById('cart-count').innerText = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+        }
+
+        function updateQuantity(index, amount) {
+            if (cartItems[index].quantity + amount > 0) {
+                cartItems[index].quantity += amount;
+                localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                loadCart();
+            }
+        }
+
+        function removeItem(index) {
+            cartItems.splice(index, 1);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            loadCart();
+        }
+
+        function sendOrder() {
+            const orderSummary = cartItems.map(item => `${item.name} x ${item.quantity}`).join(', ');
+            const whatsappUrl = `https://wa.me/0767043019?text=Order:%20${encodeURIComponent(orderSummary)}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        loadCart();
+    </script>
+</body>
+</html>

@@ -1,0 +1,335 @@
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background: #ffffff;
+    line-height: 1.6;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+h1, h2, h3 {
+    color: #000000;
+    text-align: center;
+}
+
+/* Header */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: linear-gradient(45deg, #f55d5d, #f16cdb);
+    color: #fff;
+}
+.header-container h1 {
+    font-size: 1.8rem;
+}
+nav a {
+    margin: 0 1rem;
+    color: #fff;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+nav a:hover {
+    color: #ffd700;
+}
+
+/* Hero Section */
+.hero {
+    padding: 2rem;
+    text-align: center;
+    background: linear-gradient(60deg, #e0c3fc, #8ec5fc);
+    color: #fff;
+    animation: fadeIn 2s ease-in;
+}
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* Products Section */
+.products {
+    padding: 2rem;
+    text-align: center;
+}
+.products h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+}
+.product {
+    width: 200px;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease;
+}
+.product:hover {
+    transform: scale(1.05);
+}
+.product img {
+    width: 100%;
+    border-radius: 10px;
+}
+.product h3 {
+    margin: 0.5rem 0;
+}
+.product p {
+    color: #666;
+    font-weight: bold;
+}
+.product button {
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.product button:hover {
+    background-color: #f06595;
+}
+
+/* Cart Page */
+.cart-container {
+    padding: 2rem;
+    max-width: 900px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+    animation: fadeIn 1.2s ease-in-out;
+}
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    animation: slideUp 1s ease-in-out;
+}
+.cart-table th, .cart-table td {
+    padding: 1rem;
+    text-align: center;
+    border-bottom: 2px solid #e0e0e0;
+    color: #444;
+    transition: background 0.3s ease;
+}
+.cart-table th {
+    background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+    color: #fff;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+.cart-table td {
+    background-color: #fafafa;
+}
+.cart-table tr:hover td {
+    background-color: #f0f0f0;
+}
+.cart-table td img {
+    width: 60px;
+    height: auto;
+    border-radius: 5px;
+}
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+}
+.quantity-control button {
+    background-color: #ff6b6b;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.7rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.quantity-control button:hover {
+    background-color: #f06595;
+}
+.remove-button {
+    background: #ff6b6b;
+    color: white;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+.remove-button:hover {
+    background-color: #f06595;
+    transform: scale(1.1);
+}
+.cart-summary {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #c3cfe2, #e2e3e4);
+    border-radius: 10px;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+    animation: fadeIn 1.5s ease-in-out;
+}
+.cart-summary h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+.cart-summary p {
+    font-size: 1.1rem;
+    margin: 0.5rem 0;
+}
+.order-button {
+    display: inline-block;
+    background: linear-gradient(45deg, #28a745, #218838);
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.order-button:hover {
+    background-color: #1e7e34;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Header Styles */
+.header-container {
+    background: linear-gradient(135deg, #ff6b6b, #f06595);
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffd700;
+}
+
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 2rem;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    border-radius: 12px;
+}
+
+/* Products Section */
+.products {
+    padding: 2rem;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product {
+    width: 200px;
+    padding: 1rem;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.product:hover {
+    transform: scale(1.05);
+}
+
+.product img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.product h3 {
+    margin: 0.5rem 0;
+}
+
+.product p {
+    color: #666;
+    font-weight: bold;
+}
+
+.product button {
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.product button:hover {
+    background-color: #f06595;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: #ff6b6b;
+    color: white;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero, .product {
+    animation: fadeIn 1s ease-in-out;
+}
